@@ -1,5 +1,6 @@
 import {query} from 'express';
 import { pool } from '../database/conexion.js';
+import { validationResult } from 'express-validator';
 
 export const listar = async (req,res) => {
     try{
@@ -17,6 +18,10 @@ export const listar = async (req,res) => {
   
   export const registrar = async (req, res) =>{
     try{
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+         return res.status(400).json({ errors: errors.array() });
+      }
     const {fk_id_tipo_recursos, precio} = req.body;
   
     let sql =  `INSERT INTO recursos (fk_id_tipo_recursos, precio) VALUES (?, ?)`;
@@ -37,6 +42,10 @@ export const listar = async (req,res) => {
 
   export const actualizar = async (req, res) => {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+         return res.status(400).json({ errors: errors.array() });
+      }
       const { id_recursos} = req.params;
       const { fk_id_tipo_recursos, precio } = req.body;
   
