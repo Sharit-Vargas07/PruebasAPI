@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentacion de la API</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Documentacion de la API</h1>
+  <hr>
+  <h3>Requerimiento 1. Documentacion ENDPOINT USUARIO</h3>
+<table>
+  <tr><td>Número</td> <td>1</td></tr>
+  <tr><td>Nombre del Servicio</td>  <td>Listar usuarios</td></tr>
+  <tr><td>URI</td>  <td>/usuario/listar</td></tr>
+  <tr><td>Descripcion</td>  <td>Permite listar los usuarios registrados en la base de datos</td></tr>
+  <tr><td>Verbo HTTP</td>  <td>Verbo Get</td></tr>
+  <tr><td>Header</td>  <td>Null</td></tr>
+  <tr><td>Request json</td>  <td>{"nombre": "juanito"}</td></tr>
+  <tr><td>Respuesta json</td>  <td>	
+    Correcto: 
+    Status: 200
+    json:
+    {
+		"id_usuario": 1,
+		"nombres": "darickson ",
+		"direccion": "eleden",
+		"telefono": "31515",
+		"correo": "darickson@gmail.com",
+		"rol": "administrador",
+		"password": "123"
+	}
+  <br>
+Incorrecto:
+
+Status: 404
+body:{
+  "status": 404
+  "message" : "No se encontraron usuarios."
+}
+<br>
+Error: 
+
+Status: 500 
+json: {
+  status: 500
+  "message" : "Error en el sistema"
+}
+</td></tr>
+</table>
+</body>
+</html>
