@@ -1,0 +1,17 @@
+body{
+  background-color: rgb(188, 213, 213);
+}
+h1, h3{
+  text-align: center;
+}
+table{
+  border: solid 1px black;
+  border-collapse: collapse;
+  width: 100%;
+}
+table td{
+  border: solid 1px black;
+}
+table tr:last-child td {
+  white-space: pre-line;
+}
