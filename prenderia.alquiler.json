@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "65ed128998239f1d369ca3c7"
+  },
+  "valor": "1,2",
+  "fecha": "07/01/2023",
+  "meses": 3,
+  "descripcion": "",
+  "interes": "1,2",
+  "cliente": 12,
+  "articulo": 5
+},
+{
+  "_id": {
+    "$oid": "65ed128998239f1d369ca3c8"
+  },
+  "valor": "2,4",
+  "fecha": "10/03/2023",
+  "meses": 5,
+  "descripcion": "",
+  "interes": "2,5",
+  "cliente": 13,
+  "articulo": 10
+},
+{
+  "_id": {
+    "$oid": "65ed128998239f1d369ca3c9"
+  },
+  "valor": "4,2",
+  "fecha": "19/05/2023",
+  "meses": 4,
+  "descripcion": "",
+  "interes": "4,2",
+  "cliente": 14,
+  "articulo": 15
+},
+{
+  "_id": {
+    "$oid": "65ed128998239f1d369ca3ca"
+  },
+  "valor": "9,1",
+  "fecha": "10/10/2023",
+  "meses": 9,
+  "descripcion": "",
+  "interes": "9,1",
+  "cliente": 15,
+  "articulo": 18
+}]
