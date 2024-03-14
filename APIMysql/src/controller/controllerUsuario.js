@@ -27,7 +27,6 @@ export const registrarUsuarios = async (req, res) => {
     }
     
     const {nombres, direccion, telefono, correo, rol, password} = req.body;
-
   let sql =  `INSERT INTO usuarios (nombres,direccion, telefono, correo, rol, password) VALUES (?, ?, ?, ?, ?, ?)`;
 
   const [rows] = await pool.query(sql,[nombres, direccion,  telefono, correo, rol, password]);

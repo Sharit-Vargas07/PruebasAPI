@@ -50,73 +50,16 @@ export const listar = async (req,res) => {
   };
   
   
-
-  export const actualizar = async (req, res) => {
+  export const actualizarAlquiler = async (req, res) => {
     try {
-       const { id_costos } = req.params;
-       const { precio, fk_id_actividad, fk_id_tipo_recursos } = req.body;
+        const alquiler = await alquiler.findByIdAndUpdate(req.params.id, req.body)
 
-
-       const errors = validationResult(req);
-       if (!errors.isEmpty()) {
-           return res.status(400).json({ errors: errors.array() });
-       }
-   
-       // Verificar si el valor de fk_id_tipo_recursos existe en la tabla tipo_recursos
-       let checkSql = `SELECT COUNT(*) AS count FROM tipo_recursos WHERE id_tipo_recursos = ?`;
-       let checkSql2 = `SELECT COUNT(*) AS count FROM actividad WHERE id_actividad = ?`;
-       const [checkResult] = await pool.query(checkSql, [fk_id_tipo_recursos]);
-       const [checkResult2] = await pool.query(checkSql2, [fk_id_actividad]);
-   
-       if (checkResult[0].count === 0) {
-         return res.status(400).json({ status: 400, message: 'El valor de fk_id_tipo_recursos no existe en la tabla tipo_recursos' });
-       }
-       if (checkResult2[0].count === 0) {
-        return res.status(400).json({ status: 400, message: 'El valor de fk_id_actividad no existe en la tabla actividad' });
-      }
-
-      const [costosExist] = await pool.query('SELECT * FROM costos WHERE id_costos = ?', [fk_id_tipo_recursos, fk_id_actividad]);
-
-      if (costosExist.length === 0) {
-          return res.status(404).json({
-              status: 404,
-              message: 'El costo no existe. Registre primero un costo.'
-          });
-      }
-   
-       let sql = `
-         UPDATE costos
-         SET fk_id_tipo_recursos = ?,
-             fk_id_actividad = ?,
-             precio = ?
-         WHERE id_costos = ?
-       `;
-   
-       const [rows] = await pool.query(sql, [fk_id_tipo_recursos, fk_id_actividad, precio, id_costos]);
-   
-       if (rows.affectedRows > 0) {
-         res.status(200).json({ status: 200, message: 'La información ha sido actualizada' });
-       } else {
-         res.status(404).json({ status: 404, message: 'No se pudo actualizar la información' });
-       }
-    } catch (error) {
-       res.status(500).json({ status: 500, message: 'Error en el sistema: ' + error });
-    }
-   };
-  
-  export const buscar = async (req, res) => {
-    try {
-        const { id_costos } = req.params;
-        const [resultado] = await pool.query("SELECT * FROM costos WHERE id_costos=?", [id_costos]);
-
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(404).json({
-                mensaje: "No se encontró un recurso con ese ID"
-            });
+        if(alquiler){
+            res.status(200).json({Message: 'Alquiler actualizado'})
+        }else{
+            res.status(404).json({Message: 'Not found'})
         }
     } catch (error) {
-        res.status(500).json({ status: 500, message: 'Error en el sistema: ' + error });
+        res.status(500).json({Message: 'Error del servidor' + error})
     }
-};
+}
